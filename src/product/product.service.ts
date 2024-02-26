@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { ProductEntity } from 'src/product/entities/product.entity';
+import { ProductEntity } from './entities/product.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from 'src/product/dto/update-product.dto';

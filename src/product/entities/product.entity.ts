@@ -1,6 +1,6 @@
-import { ProductCategory } from 'src/product/enum/product-category.enum';
-import { OrderItemsEntity } from 'src/order-item/entities/order-item.entity';
-import { CreateProductDto } from 'src/product/dto/create-product.dto';
+import { ProductCategory } from '../enum/product-category.enum';
+import { OrderItemsEntity } from '../../order-item/entities/order-item.entity';
+import { CreateProductDto } from '../dto/create-product.dto';
 import {
   Entity,
   Column,

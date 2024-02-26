@@ -1,5 +1,5 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { ProductCategory } from 'src/product/enum/product-category.enum';
+import { ProductCategory } from '../enum/product-category.enum';
 import { CreateProductDto } from './create-product.dto';
 import { Min, IsEnum, IsString, IsNotEmpty, IsOptional } from 'class-validator';
 

@@ -1,10 +1,10 @@
-import { ProductEntity } from 'src/product/entities/product.entity';
+import { ProductEntity } from './entities/product.entity';
 import { ProductService } from './product.service';
-import { ProductCategory } from 'src/product/enum/product-category.enum';
+import { ProductCategory } from './enum/product-category.enum';
 import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from 'src/product/dto/update-product.dto';
-import { StandardReturnDto } from 'src/dto/standard-return.dto';
-import { ShowAllPropsProductDto } from 'src/product/dto/show-all-props-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
+import { StandardReturnDto } from '../dto/standard-return.dto';
+import { ShowAllPropsProductDto } from './dto/show-all-props-product.dto';
 import {
   Get,
   Post,
@@ -33,23 +33,25 @@ export class ProductController {
 
   @Get()
   async findAll(): Promise<StandardReturnDto> {
-    const productsList: ProductEntity[] = await this.productService.findAll();
+    const productsList: ProductEntity[] = await this.productService.findAll() || [];
+    const listParsed: ShowAllPropsProductDto[] = productsList.map(
+      (product) =>
+        new ShowAllPropsProductDto(
+          product.id,
+          product.name,
+          product.code,
+          product.stock,
+          Number(product.value),
+          product.category,
+          product.status,
+          product.createdAt,
+          product.updatedAt,
+          product.deletedAt,
+        ),
+    );
+
     return new StandardReturnDto('Showing all products', {
-      products: productsList.map(
-        (product) =>
-          new ShowAllPropsProductDto(
-            product.id,
-            product.name,
-            product.code,
-            product.stock,
-            Number(product.value),
-            product.category,
-            product.status,
-            product.createdAt,
-            product.updatedAt,
-            product.deletedAt,
-          ),
-      ),
+      products: listParsed,
       total: productsList.length,
     });
   }

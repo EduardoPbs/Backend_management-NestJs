@@ -1,4 +1,4 @@
-import { ProductCategory } from 'src/product/enum/product-category.enum';
+import { ProductCategory } from '../enum/product-category.enum';
 import { IsEnum, IsNotEmpty, IsNumber, IsString, Min } from 'class-validator';
 
 export class CreateProductDto {
